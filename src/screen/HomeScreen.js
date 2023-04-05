@@ -3,7 +3,7 @@ import React from 'react'
 
 const HomeScreen = () => {
   return (
-    <View>
+    <View className="bg-[#fff] h-full">
       <Text>Bonjour, c'est 20/20 !</Text>
     </View>
   )
