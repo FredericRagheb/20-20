@@ -13,15 +13,13 @@ const Tab = createBottomTabNavigator();
 
 const BottomNavigation = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Search" component={SearchScreen} />
         <Tab.Screen name="Add" component={AddScreen} />
         <Tab.Screen name="Chat" component={ChatScreen} />
         <Tab.Screen name="Profil" component={ProfilScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
   )
 }
 

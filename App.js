@@ -1,18 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import BottomNavigation from './src/Navigation/BottomNavigation';
-
-
-
-
+import LogNavigation from './src/Navigation/LogNavigation';
+import Nav from './src/Navigation/Nav';
 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <BottomNavigation/>
-      <StatusBar style="auto" />
-    </View>
+    
+      <Nav/>
+    
   );
 }
 
