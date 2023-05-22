@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, KeyboardAvoidingView, ScrollView, TextInput, SafeAreaView, Image, Pressable, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 
-const SignUp = ({navigation}) => {
-
-  function navigateTo(){
-    navigation.getParent().navigate("BottomScreens")
-  }
-
+const SignUp = () => {
   const [promotion, setPromotion] = useState('');
   const [programme, setProgramme] = useState('');
-  const [classe, setClasse] = useState('');
   const [promotionModalVisible, setPromotionModalVisible] = useState(false);
   const [programmeModalVisible, setProgrammeModalVisible] = useState(false);
-  const [classeModalVisible, setClasseModalVisible] = useState(false);
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 6 }, (_, index) => currentYear + index);
   const programmes = ['Classiques', 'Biologie', 'International', 'Renforcé'];
-  const classes = ['A', 'B', 'C', 'D', 'E', 'BN', 'R', 'INT1', 'INT2', 'INT3', 'INT4', 'BX'];
 
   const handlePromotionSelection = (value) => {
     setPromotion(value);
@@ -26,11 +18,6 @@ const SignUp = ({navigation}) => {
   const handleProgrammeSelection = (value) => {
     setProgramme(value);
     setProgrammeModalVisible(false);
-  };
-
-  const handleClasseSelection = (value) => {
-    setClasse(value);
-    setClasseModalVisible(false);
   };
 
   return (
@@ -93,35 +80,12 @@ const SignUp = ({navigation}) => {
               </View>
             </Modal>
 
-            <TouchableOpacity onPress={() => setClasseModalVisible(true)} style={styles.input}>
-              <Text>{classe ? classe : 'Sélectionnez une classe'}</Text>
-            </TouchableOpacity>
-            <Modal
-              visible={classeModalVisible}
-              animationType="slide"
-              transparent={true}
-              onRequestClose={() => setClasseModalVisible(false)}
-            >
-              <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                  {classes.map((classe) => (
-                    <TouchableOpacity
-                      key={classe}
-                      style={styles.modalItem}
-                      onPress={() => handleClasseSelection(classe)}
-                    >
-                      <Text>{classe}</Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              </View>
-            </Modal>
-
+            <TextInput placeholder="Classe" placeholderTextColor="#377FBC" style={styles.input} />
             <TextInput placeholder="Mot de passe" placeholderTextColor="#377FBC" style={styles.input} />
             <TextInput placeholder="Confirmation du mot de passe" placeholderTextColor="#377FBC" style={styles.input} />
           </View>
           <View style={styles.buttonContainer}>
-            <Pressable style={styles.button} onPress={()=>navigateTo()}>
+            <Pressable style={styles.button}>
               <Text style={styles.buttonText}>VALIDER</Text>
             </Pressable>
           </View>

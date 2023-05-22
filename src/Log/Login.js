@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native'
 const Login = ({navigation}) => {
 
   function navigateTo(name){
+    console.log(navigation)
     navigation.navigate(name)
   }
   return (
