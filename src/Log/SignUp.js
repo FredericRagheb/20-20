@@ -14,8 +14,8 @@ const SignUp = ({navigation}) => {
   const [programmeModalVisible, setProgrammeModalVisible] = useState(false);
   const [classeModalVisible, setClasseModalVisible] = useState(false);
   const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: 6 }, (_, index) => currentYear + index);
-  const programmes = ['Classiques', 'Biologie', 'International', 'Renforcé'];
+  const years = Array.from({ length: 5 }, (_, index) => currentYear + index);
+  const programmes = ['Classique', 'Biologie', 'International', 'Renforcé'];
   const classes = ['A', 'B', 'C', 'D', 'E', 'BN', 'R', 'INT1', 'INT2', 'INT3', 'INT4', 'BX'];
 
   const handlePromotionSelection = (value) => {
@@ -34,9 +34,9 @@ const SignUp = ({navigation}) => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+    <ScrollView className="bg-[#163767]" >
       <SafeAreaView className="bg-[#163767]">
-        <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={50} className="grow flex flex-col justify-between ">
+        <View behavior="padding" keyboardVerticalOffset={50} className="h-full flex-col justify-between">
           <View className="pb-6">
             <Image className="mx-auto w-[113px] h-[48px]" source={require("../assets/logo_20-20.png")} />
           </View>
@@ -125,7 +125,7 @@ const SignUp = ({navigation}) => {
               <Text className="text-white text-center font-bold" >VALIDER</Text>
             </Pressable>
           </View>
-        </KeyboardAvoidingView>
+        </View>
       </SafeAreaView>
     </ScrollView>
   );

@@ -2,10 +2,10 @@ import { Pressable,View, Text, Image } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 
+
 const Login = ({navigation}) => {
 
   function navigateTo(name){
-    console.log(navigation)
     navigation.navigate(name)
   }
   return (
