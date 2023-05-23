@@ -35,18 +35,18 @@ const SignUp = ({navigation}) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-      <SafeAreaView style={styles.safeArea}>
-        <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={50} style={styles.keyboardAvoidingView}>
-          <View style={styles.logoContainer}>
-            <Image style={styles.logo} source={require("../assets/logo_20-20.png")} />
+      <SafeAreaView className="bg-[#163767]">
+        <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={50} className="grow flex flex-col justify-between ">
+          <View className="pb-6">
+            <Image className="mx-auto w-[113px] h-[48px]" source={require("../assets/logo_20-20.png")} />
           </View>
-          <View style={styles.formContainer}>
-            <TextInput placeholder="Nom" placeholderTextColor="#377FBC" style={styles.input} />
-            <TextInput placeholder="Prénom" placeholderTextColor="#377FBC" style={styles.input} />
-            <TextInput placeholder="Email Efrei" placeholderTextColor="#377FBC" style={styles.input} keyboardType="email-address" />
+          <View className="space-y-5 pb-12">
+            <TextInput placeholder="Nom" placeholderTextColor="#377FBC" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
+            <TextInput placeholder="Prénom" placeholderTextColor="#377FBC"  className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
+            <TextInput placeholder="Email Efrei" placeholderTextColor="#377FBC"  keyboardType="email-address" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
 
-            <TouchableOpacity onPress={() => setPromotionModalVisible(true)} style={styles.input}>
-              <Text>{promotion ? promotion : 'Sélectionnez une promotion'}</Text>
+            <TouchableOpacity onPress={() => setPromotionModalVisible(true)} className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] " >
+              <Text className="text-[#377FBC] font-bold" >{promotion ? promotion : 'Sélectionnez une promotion'}</Text>
             </TouchableOpacity>
             <Modal
               visible={promotionModalVisible}
@@ -69,8 +69,8 @@ const SignUp = ({navigation}) => {
               </View>
             </Modal>
 
-            <TouchableOpacity onPress={() => setProgrammeModalVisible(true)} style={styles.input}>
-              <Text>{programme ? programme : 'Sélectionnez un programme'}</Text>
+            <TouchableOpacity onPress={() => setProgrammeModalVisible(true)} className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] " >
+              <Text className="text-[#377FBC] font-bold" >{programme ? programme : 'Sélectionnez un programme'}</Text>
             </TouchableOpacity>
             <Modal
               visible={programmeModalVisible}
@@ -93,8 +93,8 @@ const SignUp = ({navigation}) => {
               </View>
             </Modal>
 
-            <TouchableOpacity onPress={() => setClasseModalVisible(true)} style={styles.input}>
-              <Text>{classe ? classe : 'Sélectionnez une classe'}</Text>
+            <TouchableOpacity onPress={() => setClasseModalVisible(true)} className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] "  >
+              <Text  className="text-[#377FBC] font-bold">{classe ? classe : 'Sélectionnez une classe'}</Text>
             </TouchableOpacity>
             <Modal
               visible={classeModalVisible}
@@ -117,12 +117,12 @@ const SignUp = ({navigation}) => {
               </View>
             </Modal>
 
-            <TextInput placeholder="Mot de passe" placeholderTextColor="#377FBC" style={styles.input} />
-            <TextInput placeholder="Confirmation du mot de passe" placeholderTextColor="#377FBC" style={styles.input} />
+            <TextInput placeholder="Mot de passe" placeholderTextColor="#377FBC" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
+            <TextInput placeholder="Confirmation du mot de passe" placeholderTextColor="#377FBC" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
           </View>
-          <View style={styles.buttonContainer}>
-            <Pressable style={styles.button} onPress={()=>navigateTo()}>
-              <Text style={styles.buttonText}>VALIDER</Text>
+          <View >
+            <Pressable className="bg-[#DD5555] mx-10 py-3 rounded-full" onPress={()=>navigateTo()}>
+              <Text className="text-white text-center font-bold" >VALIDER</Text>
             </Pressable>
           </View>
         </KeyboardAvoidingView>
@@ -132,42 +132,6 @@ const SignUp = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: '#163767',
-  },
-  safeArea: {
-    flex: 1,
-  },
-  keyboardAvoidingView: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  logoContainer: {
-    alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 20,
-  },
-  logo: {
-    width: 113,
-    height: 48,
-  },
-  formContainer: {
-    marginBottom: 20,
-  },
-  input: {
-    backgroundColor: 'white',
-    paddingVertical: 5,
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    borderWidth: 5,
-    borderColor: '#377FBC',
-    color: '#377FBC',
-    fontWeight: 'bold',
-    marginBottom: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -184,21 +148,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: 'center',
   },
-  buttonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: '#DD5555',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 50,
-  },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
+  
 });
 
 export default SignUp;
