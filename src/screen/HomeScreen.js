@@ -20,13 +20,9 @@ const HomeScreen = ({navigation}) => {
   }
   let [ fileName, setFileName ] = React.useState([]);
 
-  useMemo(() => {
-    console.log(fileName);
-  }, [fileName]);
-
   useEffect(() => {
     loadElement();
-  }, []);
+  });
   return (
     <SafeAreaView className="bg-[#163767]">
       <View className="h-full bg-[#377FBC]">
