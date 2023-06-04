@@ -34,100 +34,77 @@ const SignUp = ({navigation}) => {
   };
 
   return (
-    <ScrollView className="bg-[#163767]" >
-      <SafeAreaView className="bg-[#163767]">
-        <View behavior="padding" keyboardVerticalOffset={50} className="h-full flex-col justify-between">
-          <View className="pb-6">
-            <Image className="mx-auto w-[113px] h-[48px]" source={require("../assets/logo_20-20.png")} />
-          </View>
-          <View className="space-y-5 pb-12">
-            <TextInput placeholder="Nom" placeholderTextColor="#377FBC" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
-            <TextInput placeholder="Prénom" placeholderTextColor="#377FBC"  className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
-            <TextInput placeholder="Email Efrei" placeholderTextColor="#377FBC"  keyboardType="email-address" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
+  <SafeAreaView className="bg-[#163767] h-full flex-col justify-between">
+    <KeyboardAvoidingView className="bg-[#163767]" style={styles.container} behavior="padding" keyboardVerticalOffset={50}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent} keyboardShouldPersistTaps="handled">        
+        <SafeAreaView className="bg-[#163767]">
+          <View behavior="padding" keyboardVerticalOffset={50} className="h-full flex-col justify-between">
+            <View className="pb-6">
+              <Image className="mx-auto w-[113px] h-[48px]" source={require("../assets/logo_20-20.png")} />
+            </View>
+            <View className="space-y-5 pb-12">
+              <TextInput placeholder="Nom" placeholderTextColor="#377FBC" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
+              <TextInput placeholder="Prénom" placeholderTextColor="#377FBC"  className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
+              <TextInput placeholder="Email Efrei" placeholderTextColor="#377FBC"  keyboardType="email-address" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
 
-            <TouchableOpacity onPress={() => setPromotionModalVisible(true)} className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] " >
-              <Text className="text-[#377FBC] font-bold" >{promotion ? promotion : 'Sélectionnez une promotion'}</Text>
-            </TouchableOpacity>
-            <Modal
-              visible={promotionModalVisible}
-              animationType="slide"
-              transparent={true}
-              onRequestClose={() => setPromotionModalVisible(false)}
-            >
-              <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                  {years.map((year) => (
-                    <TouchableOpacity
-                      key={year}
-                      style={styles.modalItem}
-                      onPress={() => handlePromotionSelection(year.toString())}
-                    >
-                      <Text>{year.toString()}</Text>
-                    </TouchableOpacity>
-                  ))}
+              <TouchableOpacity onPress={() => setPromotionModalVisible(true)} className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] " >
+                <Text className="text-[#377FBC] font-bold" >{promotion ? promotion : 'Sélectionnez une promotion'}</Text>
+              </TouchableOpacity>
+              <Modal visible={promotionModalVisible} animationType="slide" transparent={true} onRequestClose={() => setPromotionModalVisible(false)}>
+                <View style={styles.modalContainer}>
+                  <View style={styles.modalContent}>
+                    {years.map((year) => (
+                      <TouchableOpacity key={year} style={styles.modalItem} onPress={() => handlePromotionSelection(year.toString())}>
+                        <Text>{year.toString()}</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
                 </View>
-              </View>
-            </Modal>
+              </Modal>
 
-            <TouchableOpacity onPress={() => setProgrammeModalVisible(true)} className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] " >
-              <Text className="text-[#377FBC] font-bold" >{programme ? programme : 'Sélectionnez un programme'}</Text>
-            </TouchableOpacity>
-            <Modal
-              visible={programmeModalVisible}
-              animationType="slide"
-              transparent={true}
-              onRequestClose={() => setProgrammeModalVisible(false)}
-            >
-              <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                  {programmes.map((program) => (
-                    <TouchableOpacity
-                      key={program}
-                      style={styles.modalItem}
-                      onPress={() => handleProgrammeSelection(program)}
-                    >
-                      <Text>{program}</Text>
-                    </TouchableOpacity>
-                  ))}
+              <TouchableOpacity onPress={() => setProgrammeModalVisible(true)} className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] " >
+                <Text className="text-[#377FBC] font-bold" >{programme ? programme : 'Sélectionnez un programme'}</Text>
+              </TouchableOpacity>
+              <Modal visible={programmeModalVisible} animationType="slide" transparent={true} onRequestClose={() => setProgrammeModalVisible(false)}>
+                <View style={styles.modalContainer}>
+                  <View style={styles.modalContent}>
+                    {programmes.map((program) => (
+                      <TouchableOpacity key={program} style={styles.modalItem} onPress={() => handleProgrammeSelection(program)}>
+                        <Text>{program}</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
                 </View>
-              </View>
-            </Modal>
+              </Modal>
 
-            <TouchableOpacity onPress={() => setClasseModalVisible(true)} className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] "  >
-              <Text  className="text-[#377FBC] font-bold">{classe ? classe : 'Sélectionnez une classe'}</Text>
-            </TouchableOpacity>
-            <Modal
-              visible={classeModalVisible}
-              animationType="slide"
-              transparent={true}
-              onRequestClose={() => setClasseModalVisible(false)}
-            >
-              <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                  {classes.map((classe) => (
-                    <TouchableOpacity
-                      key={classe}
-                      style={styles.modalItem}
-                      onPress={() => handleClasseSelection(classe)}
-                    >
-                      <Text>{classe}</Text>
-                    </TouchableOpacity>
-                  ))}
+              <TouchableOpacity onPress={() => setClasseModalVisible(true)} className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] "  >
+                <Text  className="text-[#377FBC] font-bold">{classe ? classe : 'Sélectionnez une classe'}</Text>
+              </TouchableOpacity>
+              <Modal visible={classeModalVisible} animationType="slide" transparent={true} onRequestClose={() => setClasseModalVisible(false)}>
+                <View style={styles.modalContainer}>
+                  <View style={styles.modalContent}>
+                    {classes.map((classe) => (
+                      <TouchableOpacity key={classe} style={styles.modalItem} onPress={() => handleClasseSelection(classe)}>
+                        <Text>{classe}</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
                 </View>
-              </View>
-            </Modal>
+              </Modal>
 
-            <TextInput placeholder="Mot de passe" placeholderTextColor="#377FBC" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
-            <TextInput placeholder="Confirmation du mot de passe" placeholderTextColor="#377FBC" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
+              <TextInput placeholder="Mot de passe" placeholderTextColor="#377FBC" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
+              <TextInput placeholder="Confirmation du mot de passe" placeholderTextColor="#377FBC" className="bg-white mx-6 py-5 rounded-2xl pl-3 border-[5px] border-[#377FBC] text-[#377FBC] font-bold" />
+            </View>
+            <View >
+              <Pressable className="bg-[#DD5555] mx-10 py-3 rounded-full" onPress={()=>navigateTo()}>
+                <Text className="text-white text-center font-bold" >VALIDER</Text>
+              </Pressable>
+            </View>
           </View>
-          <View >
-            <Pressable className="bg-[#DD5555] mx-10 py-3 rounded-full" onPress={()=>navigateTo()}>
-              <Text className="text-white text-center font-bold" >VALIDER</Text>
-            </Pressable>
-          </View>
-        </View>
-      </SafeAreaView>
-    </ScrollView>
+        </SafeAreaView>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  </SafeAreaView>
   );
 };
 
@@ -148,6 +125,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: 'center',
   },
+
   
 });
 

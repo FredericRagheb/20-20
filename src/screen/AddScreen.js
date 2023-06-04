@@ -1,96 +1,43 @@
-import React, { useState } from 'react';
-import { View, Text, KeyboardAvoidingView, ScrollView, TextInput, SafeAreaView, Image, Pressable, StyleSheet } from 'react-native';
+import { View, Text, KeyboardAvoidingView, ScrollView ,TextInput, SafeAreaView, Image, TouchableOpacity } from 'react-native'
+import React from 'react'
+import * as DocumentPicker from 'expo-document-picker';
+import { UploadFile } from '../Firebase/Storage';
 
-const SignUp = ({navigation}) => {
-  const [subject, setSubject] = useState('');
-  const [subjectCode, setSubjectCode] = useState('');
-  const [chapter, setChapter] = useState('');
-
+const SearchScreen = ({navigation}) => {
+  _pickDocument = async () => {
+    let result = await DocumentPicker.getDocumentAsync({})
+    if (result != null) {
+          const r = await fetch(result.uri);
+          const b = await r.blob();
+          console.log(b)
+          UploadFile(b, result.name)
+          //setIsChoosed(true) 
+    }
+  }
   return (
-    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-      <SafeAreaView style={styles.safeArea}>
-        <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={50} style={styles.keyboardAvoidingView}>
-          <View style={styles.logoContainer}>
-            <Image style={styles.logo} source={require("../assets/logo_20-20.png")} />
+    <SafeAreaView className="bg-[#163767]">
+        <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={50} className="h-full flex flex-col"> 
+          <View className="pb-2">
+              <Image className="mx-auto w-[113px] h-[48px]" source={require("../assets/logo_20-20.png")}/>
           </View>
-          <View style={styles.formContainer}>
-            <TextInput placeholder="Matière" placeholderTextColor="#377FBC" style={styles.input} onChangeText={text => setSubject(text)} />
-            <TextInput placeholder="Code de la matière" placeholderTextColor="#377FBC" style={styles.input} onChangeText={text => setSubjectCode(text)} />
-            <TextInput placeholder="Chapitre" placeholderTextColor="#377FBC" style={styles.input} onChangeText={text => setChapter(text)} />
-            <TextInput placeholder="Description" placeholderTextColor="#377FBC" style={styles.input} multiline={true} />
-
-            <Text style={styles.documentsText}>Espace pour déposer des documents</Text>
-          </View>
-          <View style={styles.buttonContainer}>
-            <Pressable style={styles.button}>
-              <Text style={styles.buttonText}>VALIDER</Text>
-            </Pressable>
+          <View className="grow flex flex-col justify-between bg-[#377FBC]">
+            <View className="space-y-5">
+              <View className="space-y-2">
+                <TextInput placeholder="Matière" placeholderTextColor="#377FBC" className="bg-white mx-5 my-5 py-5 rounded-2xl pl-3 font-bold"/>
+                <TextInput placeholder="Code de la matière" placeholderTextColor="#377FBC" className="bg-white mx-5 my-5 py-5 rounded-2xl pl-3 font-bold"/>
+                <TextInput placeholder="Chapitre" placeholderTextColor="#377FBC" className="bg-white mx-5 my-5 py-5 rounded-2xl pl-3 font-bold"/>
+                <TextInput placeholder="Description" placeholderTextColor="#377FBC" className="bg-white mx-5 my-5 py-5 rounded-2xl pl-3 font-bold"/>
+              </View>
+              <View>
+                <TouchableOpacity onPress={()=> _pickDocument()}>
+                  <Text className="text-white text-center font-bold">TELECHARGER</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         </KeyboardAvoidingView>
-      </SafeAreaView>
-    </ScrollView>
-  );
-};
+    </SafeAreaView>
+  )
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: '#163767',
-  },
-  safeArea: {
-    flex: 1,
-  },
-  keyboardAvoidingView: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  logoContainer: {
-    alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 20,
-  },
-  logo: {
-    width: 113,
-    height: 48,
-  },
-  formContainer: {
-    marginBottom: 20,
-  },
-  input: {
-    backgroundColor: 'white',
-    paddingVertical: 5,
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    borderWidth: 5,
-    borderColor: '#377FBC',
-    color: '#377FBC',
-    fontWeight: 'bold',
-    marginBottom: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: '#DD5555',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 50,
-  },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  documentsText: {
-    color: 'white',
-    textAlign: 'center',
-    marginTop: 20,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
-
-export default SignUp;
+export default SearchScreen

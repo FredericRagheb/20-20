@@ -15,7 +15,6 @@ function Nav() {
         <Stack.Screen name="BottomScreens" component={BottomNavigation}/>
       </Stack.Navigator>
     </NavigationContainer>
-    
   );
 }
 

@@ -1,0 +1,3 @@
+link page "CREER" et "CONNEXION" avec "HomePage" + logique authentification
+installation local storage et installation firebase storage
+recentrer verticalement statusBar

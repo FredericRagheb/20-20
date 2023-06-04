@@ -22,6 +22,7 @@ const SignIn = ({navigation}) => {
     let  [message, setMessage] = useState("")
     let [mail, setMail] = useState("")
     let [password, setPassword] = useState("")
+    
   return (
     <SafeAreaView className="bg-[#163767]">
         <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={50} className="h-full flex-col justify-between"> 
