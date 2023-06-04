@@ -1,3 +1,7 @@
-link page "CREER" et "CONNEXION" avec "HomePage" + logique authentification
-installation local storage et installation firebase storage
-recentrer verticalement statusBar
+1 - link page "CREER"  avec "HomePage" + logique authentification
+
+2 - regler la latence de check connexion
+
+3 - installation local storage et installation firebase storage
+
+4 - recentrer verticalement statusBar
